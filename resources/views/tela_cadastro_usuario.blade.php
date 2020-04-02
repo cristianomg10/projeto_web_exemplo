@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<h1>Cadastro de usuário</h1>
-	<form method="post" action="{{ route('usuario_add') }}">
-		@csrf
-		<input type="text" name="nome" placeholder="Nome">
-		<input type="text" name="login" placeholder="Login">
-		<input type="password" name="senha" placeholder="Senha">
-		<input type="submit" value="Enviar">
-	</form>
-</body>
-</html>
+@extends('template')
+
+@section('conteudo')
+<h1>Cadastro de usuário</h1>
+<form method="post" action="{{ route('usuario_add') }}">
+	@csrf
+	<input type="text" class="form-control" name="nome" placeholder="Nome">
+	<input type="text" class="form-control" name="login" placeholder="Login">
+	<input type="password" class="form-control" name="senha" placeholder="Senha">
+	<input type="submit" class="btn btn-success" value="Cadastrar">
+</form>
+@endsection

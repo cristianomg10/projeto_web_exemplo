@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<h1>{{ $mensagem }}</h1>
-</body>
-</html>
+@extends('template')
+
+@section('conteudo')
+<h1>{{ $mensagem }}</h1>
+@endsection

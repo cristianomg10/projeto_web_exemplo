@@ -15,9 +15,16 @@ Route::get('/sobre', function () {
     return view('welcome');
 });
 
-Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro');
+Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')
+	->name('usuario_cadastro');
+
+Route::get('/usuario/alterar/{id}', 'UsuarioController@telaAlteracao')->name('usuario_update');
+	
 Route::post('/usuario/adicionar', 'UsuarioController@adicionar')
 		->name('usuario_add');
+Route::post('/usuario/alterar/{id}', 'UsuarioController@alterar')->name('usuario_alterar');
+
+Route::get('/usuario/excluir/{id}', 'UsuarioController@excluir')->name('usuario_delete');
 
 Route::get('/usuario/listar', 'UsuarioController@listar')->name('listar');
 
