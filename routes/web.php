@@ -15,6 +15,8 @@ Route::get('/sobre', function () {
     return view('welcome');
 });
 
+/* Usuarios */
+
 Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')
 	->name('usuario_cadastro');
 
@@ -28,5 +30,13 @@ Route::get('/usuario/excluir/{id}', 'UsuarioController@excluir')->name('usuario_
 
 Route::get('/usuario/listar', 'UsuarioController@listar')->name('listar');
 
-Route::get('/tela_login', 'AppController@tela_login');
+/* Vendas */
+Route::get('/venda/cadastro', 'VendaController@telaCadastro')
+	->name('venda_cadastro');
+Route::post('/venda/adicionar', 'VendaController@adicionar')
+		->name('venda_add');
+Route::get('/venda/usuario/{id}', 'VendaController@vendasPorUsuario')->name('vendas_usuario');
+
+Route::get('/tela_login', 'AppController@tela_login')->name('tela_login');
+Route::get('/logout', 'AppController@logout')->name('logout');
 Route::post('/login', 'AppController@login')->name('logar');

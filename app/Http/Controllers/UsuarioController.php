@@ -69,8 +69,12 @@ class UsuarioController extends Controller
     }
 
     function listar(){
-        $usuarios = Usuario::all();
+        if (session()->has("login")){
+            $usuarios = Usuario::all();
 
-        return view("lista", [ "us" => $usuarios ]);
+            return view("lista", [ "us" => $usuarios ]);
+        }
+
+        return redirect()->route('tela_login');
     }
 }

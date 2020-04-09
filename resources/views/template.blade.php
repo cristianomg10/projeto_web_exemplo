@@ -22,10 +22,7 @@
 			        <a class="nav-link" href="#">Features</a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Pricing</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
 			      </li>
 			    </ul>
 			  </div>
@@ -37,7 +34,8 @@
 				<!-- coluna vazia esquerda -->
 			</div>
 			<div class="col-md-8 mt-3">
-				
+				<p>Olá, {{ session("nome") }}.</p>
+
 				@yield('conteudo')
 			</div>
 			<div class="col-md-2">

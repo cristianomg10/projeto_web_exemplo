@@ -23,9 +23,22 @@ class AppController extends Controller
     	if ($usuario and $usuario->senha == $senha){
     		//se nao é null, entra aqui
     		//login e senha estão certos
+
+            $variavel = [
+                "login" => $login,
+                "nome" => $usuario->nome
+            ];
+            session($variavel);
+
     		return redirect()->route('listar');
     	} else {
     		return view("resultado", ["mensagem" => "Usuário ou senha inválidos."]);
     	}
+    }
+
+    function logout(){
+        session()->forget(["login", "nome"]);
+        
+        return redirect()->route('tela_login');
     }
 }
