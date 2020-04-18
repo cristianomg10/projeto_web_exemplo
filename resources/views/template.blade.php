@@ -19,7 +19,13 @@
 			        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 			      </li>
 			      <li class="nav-item">
-			        <a class="nav-link" href="#">Features</a>
+			        <a class="nav-link" href="{{ route('listar') }}">Usuários</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="{{ route('venda_listar') }}">Vendas</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Produtos</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
