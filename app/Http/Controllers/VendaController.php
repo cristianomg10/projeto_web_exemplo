@@ -86,19 +86,19 @@ class VendaController extends Controller
 
     }
 
-    function excluirItem($id, $id_produto){
+    function excluirItem($id, $id_pivot){
         $venda = Venda::find($id);
         $subtotal = 0;
 
         foreach($venda->produtos as $vp){
-            if ($vp->id == $id_produto){
+            if ($vp->pivot->id == $id_pivot){
                 $subtotal = $vp->pivot->subtotal;
                 break;
             }
         }
 
         $venda->valor = $venda->valor - $subtotal; 
-        $venda->produtos()->detach($id_produto);
+        $venda->produtos()->wherePivot('id', '=', $id_pivot)->detach();
         $venda->save();
 
         return redirect()->route('vendas_item_novo', 

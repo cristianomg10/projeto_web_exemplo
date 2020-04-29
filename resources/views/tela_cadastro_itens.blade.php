@@ -36,7 +36,7 @@
 			<td>{{ $p->pivot->subtotal }}</td>
 			<td>{{ $p->pivot->created_at }}</td>
 			<td><a href="#" class="btn btn-danger" onclick="exclui({{
-				$p->id }})">Remover</a></td>
+				$p->pivot->id }})">Remover</a></td>
 		</tr>
 		@endforeach
 		<tr>
