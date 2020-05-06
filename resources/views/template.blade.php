@@ -40,7 +40,11 @@
 				<!-- coluna vazia esquerda -->
 			</div>
 			<div class="col-md-8 mt-3">
-				<p>Olá, {{ session("nome") }}.</p>
+				<p>Olá, {{ Auth::user()->name }}.</p>
+				@if (session()->has('mensagem'))
+					<div class="alert alert-danger">{{ session('mensagem') }}</div>
+					{{ session()->forget(['mensagem']) }}
+				@endif
 
 				@yield('conteudo')
 			</div>

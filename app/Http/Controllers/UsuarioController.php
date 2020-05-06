@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use Auth;
 
 class UsuarioController extends Controller
 {
@@ -59,6 +60,10 @@ class UsuarioController extends Controller
     function excluir($id){
         $usuario = Usuario::find($id);
 
+        foreach ($usuario->vendas as $v){
+            $v->delete();
+        }
+
         if ($usuario->delete()){
             $msg = "Usuário $id excluído com sucesso.";
         } else {
@@ -69,12 +74,11 @@ class UsuarioController extends Controller
     }
 
     function listar(){
-        if (session()->has("login")){
-            $usuarios = Usuario::all();
+    
+        $usuarios = Usuario::all();
 
-            return view("lista", [ "us" => $usuarios ]);
-        }
+        return view("lista", [ "us" => $usuarios ]);
 
-        return redirect()->route('tela_login');
+        #return redirect()->route('tela_login');
     }
 }
