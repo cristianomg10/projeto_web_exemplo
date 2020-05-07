@@ -23,6 +23,12 @@ class UsuarioController extends Controller
     	$login = $req->input('login');
     	$senha = $req->input('senha');
 
+        $req->validate([
+            'nome' => 'required|min:10',
+            'login' => 'required|alpha|min:8',
+            'senha' => 'required|min:6|different:nome|confirmed'
+        ]);
+
     	$usuario = new Usuario();
     	$usuario->nome = $nome;
     	$usuario->login = $login;
