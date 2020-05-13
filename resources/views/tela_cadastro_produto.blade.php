@@ -10,14 +10,14 @@
         </ul>
     </div>
 @endif
-
-<h1>Cadastro de usuário</h1>
-<form method="post" action="{{ route('usuario_add') }}">
+<h1>Cadastro de Produto</h1>
+<form method="post" action="{{ route('produto_add') }}" enctype="multipart/form-data">
 	@csrf
 	<input type="text" class="form-control" name="nome" placeholder="Nome" value="{{ old('nome') }}">
-	<input type="text" class="form-control" name="login" placeholder="Login" value="{{ old('login') }}">
-	<input type="password" class="form-control" name="senha" placeholder="Senha">
-    <input type="password" class="form-control" name="senha_confirmation" placeholder="Repita a Senha">
+	<input type="text" class="form-control" name="descricao" placeholder="Descrição" value="{{ old('descricao') }}">
+	<input type="number" step="0.01" class="form-control" name="preco" placeholder="Preço">
+  	<input type="file" name="upload" class="form-control">
+
 	<input type="submit" class="btn btn-success" value="Cadastrar">
 </form>
 @endsection

@@ -24,6 +24,9 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/venda/listar', 'VendaController@listar')->name('venda_listar');
 	Route::get('/venda/usuario/{id}', 'VendaController@vendasPorUsuario')->name('vendas_usuario');
 
+	/* Produtos */
+	Route::get('/produto/listar', 'ProdutoController@listar')->name('produtos_listar');
+
 	Route::middleware(['eh_admin'])->group(function(){
 		/* Usuarios */
 		Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')
@@ -42,6 +45,11 @@ Route::middleware(['auth'])->group(function(){
 		Route::get('/venda/{id}/itens/novo', 'VendaController@telaAdicionarItem')->name('vendas_item_novo');
 		Route::post('/venda/{id}/itens/adicionar', 'VendaController@adicionarItem')->name('vendas_item_add');
 		Route::get('/venda/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItem')->name('vendas_item_delete');
+
+		/* Produtos */
+		Route::get('/produto/cadastro', 'ProdutoController@telaCadastro')->name('produto_cadastro');
+		Route::post('/produto/adicionar', 'ProdutoController@adicionar')
+				->name('produto_add');
 	});
 });
 
