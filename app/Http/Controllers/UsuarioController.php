@@ -79,10 +79,41 @@ class UsuarioController extends Controller
         return view("resultado", [ "mensagem" => $msg]);
     }
 
-    function listar(){
-    
-        $usuarios = Usuario::all();
+    function listar(Request $req){
+        $usuarios = null;
+        $quantidade = 2;
 
+        if ($req->query('ordem')){
+            $ordem = $req->query('ordem');
+
+            $usuarios = Usuario::orderBy($ordem, 'desc');
+        }
+
+        if ($req->query('busca')){
+            $busca = $req->query('busca');
+
+            if ($usuarios == null){
+                $usuarios = Usuario::where('nome', 'LIKE', "%$busca%");
+            } else {
+                $usuarios = $usuarios->where('nome', 'LIKE', "%$busca%");
+            }
+            
+        } 
+
+        if ($usuarios == null){
+            $usuarios = Usuario::paginate($quantidade);
+        } else {
+            $vetor_parametros = [];
+            if (isset($ordem)) {
+                $vetor_parametros["ordem"] = $ordem;
+            }
+            if (isset($busca)){
+                $vetor_parametros["busca"] = $busca;
+            }
+
+            $usuarios = $usuarios->paginate($quantidade)->appends($vetor_parametros);
+        }
+        
         return view("lista", [ "us" => $usuarios ]);
 
         #return redirect()->route('tela_login');
