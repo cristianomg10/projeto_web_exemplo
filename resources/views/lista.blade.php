@@ -2,11 +2,15 @@
 
 @section('conteudo')
 <h1>Lista de usuários</h1>
+<form>
+	<input type="text" name="busca" placeholder="Busca" autocomplete="off">
+	<input type="submit">
+</form>
 <table class="table table-striped">
 	<thead>
 		<tr>
 			<th>ID</th>
-			<th>Nome</th>
+			<th><a href="?ordem=nome">Nome</a></th>
 			<th>Login</th>
 			<th>Operações</th>
 		</tr>
@@ -26,6 +30,8 @@
 		@endforeach
 	</tbody>
 </table>
+
+{{ $us->links() }}
 
 <a class="btn btn-primary" href="{{ route('usuario_cadastro') }}">Cadastrar novo</a>
 
