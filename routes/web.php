@@ -16,6 +16,7 @@ Route::get('/sobre', function () {
 });
 
 Route::middleware(['auth'])->group(function(){
+
 	/* Usuarios */
 	Route::get('/usuario/listar', 'UsuarioController@listar')->name('listar');
 	
@@ -28,6 +29,9 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/produto/listar', 'ProdutoController@listar')->name('produtos_listar');
 
 	Route::middleware(['eh_admin'])->group(function(){
+
+		Route::get('/dashboard', 'AppController@dashboard')->name('dashboard');
+
 		/* Usuarios */
 		Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')
 		->name('usuario_cadastro');
