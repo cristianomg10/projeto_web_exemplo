@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Usuario;
 use Auth;
 
@@ -16,6 +17,37 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
 
         return view("tela_alterar_usuario", [ "u" => $usuario ]);
+    }
+
+    function passo1(Request $req){
+        $nome = $req->input('nome');
+        $login = $req->input('login');
+        $senha = $req->input('senha');
+        $cep = $req->input('cep');
+
+        $req->validate([
+            //'nome' => 'required|min:10',
+            //'login' => 'required|alpha|min:8',
+            //'senha' => 'required|min:6|different:nome|confirmed',
+            'cep' => 'required'
+        ]);
+
+        $info = Http::get("http://viacep.com.br/ws/$cep/json/");
+        $logradouro = $info["logradouro"];
+        $bairro = $info["bairro"];
+        $cidade = $info["localidade"];
+        $estado = $info["uf"];
+
+        return view('tela_cadastro_usuario_parte2', [
+            'nome' => $nome,
+            'login' => $login,
+            'senha' => $senha,
+            'cep' => $cep,
+            'logradouro' => $logradouro,
+            'bairro' => $bairro,
+            'cidade' => $cidade,
+            'estado' => $estado
+        ]);
     }
 
     function adicionar(Request $req){

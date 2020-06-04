@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use App\User;
+use App\Venda;
 use Auth;
 
 class AppController extends Controller
@@ -42,5 +44,14 @@ class AppController extends Controller
         Auth::logout();
         
         return redirect()->route('tela_login');
+    }
+
+    function dashboard(){
+        $vendas_hora = Venda::selectRaw('HOUR(created_at) as hora, ROUND(AVG(valor), 2) as media')->groupByRaw('HOUR(created_at)')->orderByRaw('1 ASC')->get();
+
+        $usuarios_online = Usuario::all()->count();
+
+        return view('dashboard', ['vendas_hora' => $vendas_hora, 
+            'usuarios_online' => $usuarios_online]);
     }
 }
