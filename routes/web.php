@@ -35,6 +35,9 @@ Route::middleware(['auth'])->group(function(){
 		/* Usuarios */
 		Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')
 		->name('usuario_cadastro');
+
+		Route::post('/usuario/cadastro_1', 'UsuarioController@passo1')->name('usuario_passo1');
+
 		Route::get('/usuario/alterar/{id}', 'UsuarioController@telaAlteracao')->name('usuario_update');
 		Route::post('/usuario/adicionar', 'UsuarioController@adicionar')
 				->name('usuario_add');

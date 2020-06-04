@@ -12,9 +12,10 @@
 @endif
 
 <h1>Cadastro de usuário</h1>
-<form method="post" action="{{ route('usuario_add') }}">
+<form method="post" action="{{ route('usuario_passo1') }}">
 	@csrf
 	<input type="text" class="form-control" name="nome" placeholder="Nome" value="{{ old('nome') }}">
+    <input type="number" class="form-control" name="cep" placeholder="CEP" value="{{ old('cep') }}">
 	<input type="text" class="form-control" name="login" placeholder="Login" value="{{ old('login') }}">
 	<input type="password" class="form-control" name="senha" placeholder="Senha">
     <input type="password" class="form-control" name="senha_confirmation" placeholder="Repita a Senha">
